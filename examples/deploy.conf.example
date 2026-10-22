@@ -1,0 +1,30 @@
+# safe-deploy.sh 설정 예시. 복사해서 환경마다 하나씩 만든다.
+
+# 확인 단계에서 그대로 입력해야 하는 환경명
+ENV_NAME="PROD2"
+
+# 개발서버(스크립트 실행 위치)의 배포 원본
+SRC_DIR="/app/myservice/webapp"
+
+# 대상 서버. 비워 두면 DST_DIR을 로컬 폴더로 취급한다(시연·테스트용).
+TARGET_HOST="deploy@prod2.example.internal"
+DST_DIR="/app/myservice/webapp"
+
+# 배포 대상 파일 패턴(rsync include 문법, 공백으로 구분)
+INCLUDE_PATTERNS="*.js *.class mappers/**/*.xml"
+
+# 대상 서버의 백업 위치와 개발서버의 로그 위치
+BACKUP_ROOT="/home/deploy/backup"
+LOG_ROOT="/home/deploy/deploy_logs"
+
+# 실행을 허용할 SSH 접속 IP 앞자리(공백 구분). 비우면 검사하지 않는다.
+ALLOWED_IP_PREFIXES="10.10.3."
+
+# 바뀌면 WAS 재시작이 필요한 파일(정규식, 공백 구분)
+RESTART_PATTERNS="[.]class$ ^mappers/.*[.]xml$"
+
+# 상세 로그 보관 일수(월별 요약 로그는 지우지 않음)
+LOG_RETENTION_DAYS=365
+
+# full 모드에서 백업 대상 중 신규 파일 비율이 이 값(%) 이상이면 경고
+NEW_FILE_WARN_RATIO=30

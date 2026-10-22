@@ -1,0 +1,6 @@
+# 실제 환경 설정과 실행 산출물은 올리지 않는다
+*.conf
+!examples/*.conf.example
+logs/
+backup/
+.env
