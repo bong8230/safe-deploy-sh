@@ -82,7 +82,8 @@ WORK_DIR="$(mktemp -d)"
 
 STATE="INIT"
 RESULT="UNKNOWN"
-EXEC_IP="${SSH_CLIENT%% *}"
+EXEC_IP="${SSH_CLIENT:-}"
+EXEC_IP="${EXEC_IP%% *}"
 EXEC_IP="${EXEC_IP:-LOCAL}"
 
 CANDIDATES="$WORK_DIR/candidates.txt"
